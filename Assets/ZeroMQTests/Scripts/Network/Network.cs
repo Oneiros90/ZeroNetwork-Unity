@@ -36,9 +36,6 @@ namespace ZeroNetwork
         ///////////////////////////////////////////////////////////////////////////////
         public void Stop()
         {
-            if (ActiveTasks.Count == 0)
-                return;
-
             while (ActiveTasks.Count > 0)
                 Stop(ActiveTasks.First());
 

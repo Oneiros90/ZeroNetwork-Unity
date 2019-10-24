@@ -26,7 +26,7 @@ namespace ZeroNetwork
                     AsyncIO.ForceDotNet.Force();
                     using (lowLevelSocket = socket.Init())
                     {
-                        Started.Invoke();
+                        Started?.Invoke();
                         while (!StopRequested)
                             socket.Update();
                     }
