@@ -43,7 +43,8 @@ namespace ZeroNetwork
             if (ZeroMQSocket != null)
             {
                 Debug.Log($"Subscribing to topic {topic}");
-                (ZeroMQSocket as SubscriberSocket).Subscribe(topic);
+                if (ZeroMQSocket is SubscriberSocket subscriber && !subscriber.IsDisposed)
+                    subscriber.Subscribe(topic);
             }
         }
 
@@ -53,7 +54,8 @@ namespace ZeroNetwork
             if (ZeroMQSocket != null)
             {
                 Debug.Log($"Unsubscribing to topic {topic}");
-                (ZeroMQSocket as SubscriberSocket).Unsubscribe(topic);
+                if (ZeroMQSocket is SubscriberSocket subscriber && !subscriber.IsDisposed)
+                    subscriber.Unsubscribe(topic);
             }
         }
 
