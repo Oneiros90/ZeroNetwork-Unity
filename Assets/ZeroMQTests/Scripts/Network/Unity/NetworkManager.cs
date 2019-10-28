@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 ///////////////////////////////////////////////////////////////////////////////
 namespace ZeroNetwork.Unity
@@ -7,16 +8,9 @@ namespace ZeroNetwork.Unity
     public class NetworkManager : MonoBehaviour
     {
 
-        private Network network = null;
-        public Network Network
-        {
-            get
-            {
-                if (network == null)
-                    network = new Network();
-                return network;
-            }
-        }
+        private readonly Lazy<Network> network = new Lazy<Network>();
+
+        public Network Network => network.Value;
 
         ///////////////////////////////////////////////////////////////////////////////
         void OnApplicationQuit()
