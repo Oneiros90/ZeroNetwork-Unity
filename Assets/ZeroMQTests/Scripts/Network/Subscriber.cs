@@ -48,6 +48,16 @@ namespace ZeroNetwork
         }
 
         ///////////////////////////////////////////////////////////////////////////////
+        public void Unsubscribe(string topic = "")
+        {
+            if (ZeroMQSocket != null)
+            {
+                Debug.Log($"Unsubscribing to topic {topic}");
+                (ZeroMQSocket as SubscriberSocket).Unsubscribe(topic);
+            }
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
         public bool TryReceive(out PubSubMessage msg)
         {
             bool isThereOne = IncomingMessages.Count > 0;

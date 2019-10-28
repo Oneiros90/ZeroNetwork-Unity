@@ -36,6 +36,7 @@ namespace ZeroNetwork.Unity
         ///////////////////////////////////////////////////////////////////////////////
         public override void OnSocketStop()
         {
+            subscriber.Unsubscribe(Topic);
         }
     }
 }

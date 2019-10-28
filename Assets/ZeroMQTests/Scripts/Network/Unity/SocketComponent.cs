@@ -43,22 +43,22 @@ namespace ZeroNetwork.Unity
         ///////////////////////////////////////////////////////////////////////////////
         protected virtual void OnEnable()
         {
-            Socket.Start(NetworkManager.Network);
-            Socket.Job.Started += () =>
+            Socket.Start(NetworkManager.Network, () =>
             {
                 if (ConnectionHost != string.Empty)
                     Socket.Connect(ConnectionHost, ConnectionPort);
                 if (ServerPort > 0)
                     Socket.Bind(ServerPort);
                 OnSocketStart();
-            };
+            });
         }
 
         ///////////////////////////////////////////////////////////////////////////////
         protected virtual void OnDisable()
         {
-            Socket.Stop();
             OnSocketStop();
+            Socket.Stop();
+            socket = null;
         }
     }
 }

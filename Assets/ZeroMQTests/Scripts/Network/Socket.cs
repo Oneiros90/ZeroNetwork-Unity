@@ -14,9 +14,11 @@ namespace ZeroNetwork
 
 
         ///////////////////////////////////////////////////////////////////////////////
-        public void Start(Network network)
+        public void Start(Network network, Action onStarted = null)
         {
             Job = new NetworkJob(this);
+            if (onStarted != null)
+                Job.Started += onStarted;
             Network = network;
             Network.Start(Job);
         }
